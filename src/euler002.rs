@@ -22,3 +22,33 @@ pub fn euler002_functional() -> i32 {
     let fib  = successors(Some((1, 2)), |(n, m)| Some((*m, n + m)));
     fib.map(|(_, n)| n).filter(|n| n % 2 == 0).take_while(|&n| n < 4_000_000).sum()
 }
+
+pub fn euler002_free_code_camp(nth_term: usize) -> i32 {
+    let fib  = successors(Some((1, 2)), |(n, m)| Some((*m, n + m)));
+    fib.map(|(_, n)| n).take(nth_term - 1).filter(|n| n % 2 == 0).sum()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::euler002_free_code_camp;
+
+    #[test]
+    fn test_limit_10() {
+        assert_eq!(euler002_free_code_camp(10), 44);
+    }
+
+    #[test]
+    fn test_limit_18() {
+        assert_eq!(euler002_free_code_camp(18), 3382);
+    }
+
+    #[test]
+    fn test_limit_23() {
+        assert_eq!(euler002_free_code_camp(23), 60696);
+    }
+
+    #[test]
+    fn test_limit_43() {
+        assert_eq!(euler002_free_code_camp(43), 350704366);
+    }
+}
