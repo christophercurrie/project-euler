@@ -2,6 +2,7 @@ use std::collections::HashSet;
 use std::iter::successors;
 use itertools::{Itertools, merge};
 
+#[allow(dead_code)]
 fn euler001_limit(limit: i32) -> i32 {
     let mut values: HashSet<i32> = HashSet::new();
 
