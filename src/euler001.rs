@@ -1,4 +1,6 @@
 use std::collections::HashSet;
+use std::iter::successors;
+use itertools::{Itertools, merge};
 
 fn euler001_limit(limit: i32) -> i32 {
     let mut values: HashSet<i32> = HashSet::new();
@@ -18,8 +20,13 @@ fn euler001_limit(limit: i32) -> i32 {
     values.iter().sum()
 }
 
+fn euler001_limit2(limit: i32) -> i32 {
+    let multiples_of = |i| successors(Some(i), move |n| Some(n + i));
+    merge(multiples_of(3), multiples_of(5)).unique().take_while(|n| *n < limit).sum()
+}
+
 pub fn euler001() {
-    let result = euler001_limit(1000);
+    let result = euler001_limit2(1000);
     println!("Euler 001: {}", result);
 }
 
@@ -39,16 +46,16 @@ mod tests {
 
     #[test]
     fn test_limit_1000() {
-        assert_eq!(euler001_limit(1000), 233168);
+        assert_eq!(euler001_limit(1_000), 233_168);
     }
 
     #[test]
     fn test_limit_8456() {
-        assert_eq!(euler001_limit(8456), 16687353);
+        assert_eq!(euler001_limit(8_456), 16_687_353);
     }
 
     #[test]
     fn test_limit_19564() {
-        assert_eq!(euler001_limit(19564), 89301183);
+        assert_eq!(euler001_limit(19_564), 89_301_183);
     }
 }
