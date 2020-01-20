@@ -1,6 +1,5 @@
 use std::iter::successors;
 
-#[allow(dead_code)]
 pub fn euler002() -> i32 {
     let mut first: i32 = 1;
     let mut second: i32 = 2;
