@@ -79,7 +79,6 @@ mod tests {
     #[test]
     fn test_euler004() {
         test_euler004_fn(euler_004);
-        test_euler004_fn(euler_004_functional);
     }
 
     #[test]
