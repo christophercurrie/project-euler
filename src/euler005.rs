@@ -1,4 +1,3 @@
-use std::cmp::max;
 use std::iter::successors;
 
 pub fn euler_005(n: i64) -> i64 {
@@ -46,11 +45,11 @@ pub fn euler_005_less_stupid(n: i64) -> i64 {
 pub fn euler_005_functional(n: i64) -> i64 {
     fn gcd(a: i64, b: i64) -> i64 {
         // This simple recursive implementation is ideal if rust had TCO, but it doesn't.
-        if b == 0 { a } else { gcd(b, a % b ) }
-        // A functional iterator can do the job w/o TCO but the syntax is awful.
-        // successors(Some((a, b)), |(a, b)| {
-        //    if *b == 0 { None } else { Some((*b, a % b)) }
-        // }).last().unwrap().0
+        // if b == 0 { a } else { gcd(b, a % b) }
+        // A functional iterator can do the job w/o TCO but the syntax is awkward.
+        successors(Some((a, b)), |(a, b)| {
+           if *b == 0 { None } else { Some((*b, a % b)) }
+        }).last().map(|(a,_)| a).unwrap()
     }
 
     (2..n).fold(n, |result, factor| {
@@ -79,6 +78,7 @@ mod tests {
     }
 
     fn test_euler005_fn(f: impl Fn(i64) -> i64) {
+        assert_eq!(f(10), 2520);
         assert_eq!(f(20), 232792560);
     }
 
