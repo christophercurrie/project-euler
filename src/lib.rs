@@ -5,3 +5,4 @@ pub mod euler004;
 pub mod euler005;
 pub mod euler006;
 pub mod euler007;
+pub mod euler008;
