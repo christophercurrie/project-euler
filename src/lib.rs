@@ -7,3 +7,5 @@ pub mod euler006;
 pub mod euler007;
 pub mod euler008;
 pub mod euler009;
+pub mod euler010;
+mod primes;
