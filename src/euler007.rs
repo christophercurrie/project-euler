@@ -1,9 +1,9 @@
 use crate::primes::primes;
 
-pub fn euler_007(nth: usize) -> i64 {
+pub fn euler_007(nth: usize) -> u64 {
     let mut factor = 2;
     loop {
-        let found: Vec<i64> = primes((nth * factor) as i64).collect();
+        let found: Vec<u64> = primes((nth * factor) as u64).collect();
         if nth < found.len() {
             return found[nth - 1];
         }

@@ -1,6 +1,6 @@
 use crate::primes::primes;
 
-pub fn euler_010(less_than: i64) -> i64 {
+pub fn euler_010(less_than: u64) -> u64 {
     primes(less_than).sum()
 }
 

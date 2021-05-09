@@ -9,4 +9,5 @@ pub mod euler008;
 pub mod euler009;
 pub mod euler010;
 mod euler011;
+mod euler012;
 mod primes;

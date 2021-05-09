@@ -1,8 +1,8 @@
-pub fn primes(less_than: i64) -> impl Iterator<Item=i64> {
+pub fn primes(less_than: u64) -> impl Iterator<Item=u64> {
     let mut results = vec![true; less_than as usize];
     results[0] = false;
     results[1] = false;
-    let mut p = 2_i64;
+    let mut p = 2_u64;
     while p * p < less_than {
         if results[p as usize] {
             let mut n = p;
@@ -17,5 +17,5 @@ pub fn primes(less_than: i64) -> impl Iterator<Item=i64> {
         .into_iter()
         .enumerate()
         .filter(|(_, is_prime)| *is_prime)
-        .map(|(i, _)| i as i64);
+        .map(|(i, _)| i as u64);
 }
