@@ -11,4 +11,5 @@ pub mod euler010;
 mod euler011;
 mod euler012;
 mod euler013;
+mod euler014;
 mod primes;
