@@ -103,6 +103,16 @@ static TERMS: [&str; 100] = [
     "53503534226472524250874054075591789781264330331690",
 ];
 
+fn euler_013_simplified(len: usize) -> String {
+    let mut sum: u64 = 0;
+
+    for n in 0..len + 1 {
+        let mapped: u64 = TERMS.iter().flat_map(|s| s[n..n+1].parse::<u64>()).sum();
+        sum = sum * 10 + mapped;
+    }
+    format!("{}", sum)[0..len].to_string()
+}
+
 fn euler_013_manual(len: usize) -> String {
     let mut sum: u64 = 0;
     let mut format_sum: String = "".to_string();
@@ -130,9 +140,10 @@ fn euler_013_manual(len: usize) -> String {
 fn euler_013_bigint(len: usize) -> String {
     use num_bigint::BigUint;
 
-    let sum: BigUint = TERMS.iter().flat_map(|s| s.parse::<BigUint>()).sum();
-    let str_sum = sum.to_str_radix(10);
-    String::from(&str_sum[0..len])
+    TERMS.iter()
+        .flat_map(|s| s.parse::<BigUint>()).sum::<BigUint>()
+        .to_string()[0..len]
+        .to_string()
 }
 
 #[cfg(test)]
@@ -143,5 +154,6 @@ mod tests {
     fn test_euler013() {
         assert_eq!(euler_013_bigint(10), "5537376230");
         assert_eq!(euler_013_manual(10), "5537376230");
+        assert_eq!(euler_013_simplified(10), "5537376230");
     }
 }
