@@ -1,4 +1,5 @@
-use std::iter::successors;
+// use std::iter::successors;
+use tailcall::tailcall;
 
 pub fn euler_005(n: i64) -> i64 {
     // Stupid version just to get the result
@@ -43,13 +44,17 @@ pub fn euler_005_less_stupid(n: i64) -> i64 {
 }
 
 pub fn euler_005_functional(n: i64) -> i64 {
+    #[tailcall]
     fn gcd(a: i64, b: i64) -> i64 {
-        // This simple recursive implementation is ideal if rust had TCO, but it doesn't.
-        // if b == 0 { a } else { gcd(b, a % b) }
+        // Now that rust has a crate to simulate tail-call optimization (through a macro that
+        // creates a trampoline) this simple recursive implementation is preferred.
+        // The `become` keyword may replace this in the future
+        // https://doc.rust-lang.org/beta/std/keyword.become.html
+        if b == 0 { a } else { gcd(b, a % b) }
         // A functional iterator can do the job w/o TCO but the syntax is awkward.
-        successors(Some((a, b)), |(a, b)| {
-           if *b == 0 { None } else { Some((*b, a % b)) }
-        }).last().map(|(a,_)| a).unwrap()
+        // successors(Some((a, b)), |(a, b)| {
+        //    if *b == 0 { None } else { Some((*b, a % b)) }
+        // }).last().map(|(a,_)| a).unwrap()
     }
 
     (2..n).fold(n, |result, factor| {

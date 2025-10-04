@@ -8,3 +8,5 @@ edition = "2018"
 
 [dependencies]
 itertools = "0.8.2"
+tailcall = "1.0.1"
+num-bigint = "0.4.6"
