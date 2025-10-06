@@ -12,4 +12,5 @@ mod euler011;
 mod euler012;
 mod euler013;
 mod euler014;
+mod euler015;
 mod primes;
